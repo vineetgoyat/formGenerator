@@ -1,15 +1,10 @@
-<body class="app sidebar-mini">
-    <!--Loader-->
+<body class="app">
     <div id="global-loader">
         <img src="{{ asset('images/loader.svg') }}" class="loader-img" alt="">
     </div>
-    <!--Loader-->
-
-    <!--Page-->
     <div class="page">
         <div class="page-main h-100">
 
-            <!--App-Header-->
             <div class="app-header1 header py-2 d-flex">
                 <div class="container-fluid">
                     <div class="d-flex">
@@ -36,10 +31,7 @@
                                         <div class="dropdown header-user ">
                                             <a href="javascript:void(0)" class="nav-link leading-none user-img"
                                                 data-bs-toggle="dropdown">
-                                                <!-- <img src="" alt="profile-img" class="avatar ms-2">  -->
-                                                <strong
-                                                    class="text-dark"
-                                                    style="margin: 0px 10px;">Guest User</strong>
+                                                <strong class="text-dark" style="margin: 0px 10px;">Guest User</strong>
                                             </a>
                                         </div>
                                     </div>
@@ -47,24 +39,7 @@
                             </div>
                         </div>
                     </div>
+                </div> </div>
             </div>
-        </div>
-        <!--/App-Header-->
-
-        <!-- Sidebar menu-->
-        <div class=" app-sidebar__overlay" data-bs-toggle="sidebar">
-        </div>
-            <aside class="app-sidebar doc-sidebar">
-                <a class="header-brand sidemenu-header-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('your_logo_here.png') }}"
-                        class="header-brand-img desktop-logo" alt="">
-                    <span style="color:#ffffff; font-size: 24px;" class="header-brand-img mobile-logo">LMS</span>
-                </a>
-
-                <ul class="side-menu">
-
-                </ul>
-            </aside>
-        </div>
     </div>
 </body>
