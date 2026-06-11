@@ -1,52 +1,105 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="content-wrapper">
+<div class="content-wrapper" style="padding-top:40px;">
     <div class="container-fluid">
         <div class="card-body">
 
-            <div class="mb-3" style="width: 60%;">
-                <input type="text" id="formTitle" maxlength="200"
-                       class="form-control form-control-lg"
-                       placeholder="Untitled Form">
+            <div class="mb-4">
 
-                <small class="text-muted">
-                    <span id="titleCount">0</span>/200 characters
-                </small>
+    <div class="mb-5">
 
-                <div class="text-muted mt-1">
-                    Submission URL:  <a href="#">{{ $title }}</a>
-                </div>
-            </div>
+    <span class="badge hero-badge mb-3">
+        Dynamic Form Creator
+    </span>
 
-            <ul class="nav nav-tabs mb-4">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Form Editor</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
-                </li>
-            </ul>
+    <h1 class="display-5 fw-bold">
+        Build Beautiful Forms
+    </h1>
 
-            <div class="row">
+    <p class="text-muted fs-5">
+        Design custom forms with drag & drop.
+        Configure fields, preview instantly and export JSON schema.
+    </p>
+
+</div>
+
+    <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+
+        <label class="fw-semibold mb-2">
+            Form Title
+        </label>
+
+        <input
+            type="text"
+            id="formTitle"
+            maxlength="200"
+            class="form-control form-control-lg"
+            placeholder="Enter Form Title">
+
+    </div>
+</div>
+
+    <div class="d-flex justify-content-between mt-2">
+        <small class="text-muted">
+            Submission URL
+        </small>
+
+        <small class="text-muted">
+            <span id="titleCount">0</span>/200
+        </small>
+    </div>
+
+</div>
+
+<ul class="nav nav-tabs mb-4">
+    <li class="nav-item">
+        <a class="nav-link active" href="#">
+            Form Editor
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            Settings
+        </a>
+    </li>
+</ul>
+
+<div class="row">
                 <div class="col-md-8">
                     <div id="dropCanvas" class="border border-dashed rounded p-4 bg-light" style="min-height: 400px;">
                         <div id="emptyState" class="text-center text-muted mt-5">
-                            Drag elements from the right panel to build your form →
+                            <div class="py-5">
+
+    <div style="font-size:60px;">
+        🧩
+    </div>
+
+    <h4 class="fw-bold mt-3">
+        Your Form Is Empty
+    </h4>
+
+    <p class="text-muted">
+        Drag fields from the right panel to start creating your form.
+    </p>
+
+</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm">
+                    <div class="card builder-panel">
                         <div class="card-body">
 
                             <ul class="nav nav-pills mb-3">
                                 <li class="nav-item">
-                                    <button id="addFieldsTab" class="nav-link active" type="button">Add Fields</button>
+                                    <button id="addFieldsTab" class="nav-link active" type="button">🧩 Add Fields</button>
                                 </li>
                                 <li class="nav-item">
-                                    <button id="fieldOptionsTab" class="nav-link" type="button">Field Options</button>
+                                    <button id="fieldOptionsTab" class="nav-link" type="button">⚙️ Field Options</button>
                                 </li>
                             </ul>
 
@@ -154,91 +207,427 @@
 </div>
 </div>
 <style>
-    .field-tile {
-        border: 1px solid #ddd;
-        background: #fff;
-        padding: 12px;
-        border-radius: 8px;
-        cursor: grab;
-        text-align: center;
-        font-size: 14px;
-    }
+    body{
+    font-family:'Inter',sans-serif;
+}
+    .field-tile{
 
-    .field-tile:hover {
-        background: #f1f5ff;
-        border-color: #0d6efd;
-    }
+    background:white;
 
-    .border-dashed {
-        border-style: dashed !important;
-    }
-	.content-wrapper {
-        margin-left: 260px !important;
-        padding: 20px;
-        padding-top: 60px !important; /* Fix top navbar overlap */
-        min-height: 100vh;
-        box-sizing: border-box;
-    }
+    border:1px solid #e2e8f0;
 
-    @media (max-width: 1024px) {
-        .content-wrapper {
-            margin-left: 0 !important;
-            padding: 15px;
-            padding-top: 80px !important;
-        }
-    }
+    border-radius:18px;
 
-    .form-builder-card {
-        max-width: 100%;
-        overflow: hidden;
-    }
+    padding:18px;
 
-    #dropCanvas {
-        min-height: 420px;
-        background: #f8f9fc !important;
-    }
+    text-align:center;
 
-    .field-card {
-        background: #fff;
-        border: 1px solid #0d6efd;
-        border-radius: 10px;
-    }
+    font-size:14px;
 
-    #dropCanvas.drag-over {
-        border: 2px dashed #0d6efd !important;
-        background: #eef5ff !important;
-    }
+    font-weight:700;
+
+    transition:.3s;
+
+    cursor:grab;
+}
+
+.field-tile:hover{
+
+    transform:
+    translateY(-5px)
+    scale(1.02);
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:white;
+
+    border-color:transparent;
+}
+
+.hero-badge{
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    ) !important;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    font-weight:600;
+}
+
+
+.form-control{
+    border-radius:14px;
+    border:1px solid #dbe2ea;
+    padding:12px 16px;
+}
+
+
+.form-control:focus{
+    border-color:#2563eb !important;
+
+    box-shadow:
+    0 0 0 4px rgba(
+        37,
+        99,
+        235,
+        .15
+    ) !important;
+}
+
+.field-card{
+
+    background:rgba(
+        255,
+        255,
+        255,
+        .85
+    );
+
+    backdrop-filter:blur(18px);
+
+    border-radius:24px;
+
+    border:1px solid rgba(
+        255,
+        255,
+        255,
+        .3
+    );
+
+    box-shadow:
+    0 20px 40px rgba(
+        15,
+        23,
+        42,
+        .08
+    );
+
+    transition:.3s;
+}
+
+.field-card:hover{
+    transform:translateY(-2px);
+}
+
+.builder-panel{
+    border:none;
+    border-radius:24px;
+    background:white;
+    box-shadow:
+    0 20px 40px rgba(15,23,42,.08);
+}
+
+.premium-input{
+    width:100%;
+    border:none;
+
+    background:
+    linear-gradient(
+        145deg,
+        #ffffff,
+        #f8fafc
+    );
+
+    padding:16px 18px;
+
+    border-radius:16px;
+
+    font-size:15px;
+
+    box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.8),
+    0 6px 18px rgba(15,23,42,.05);
+
+    transition:.3s;
+}
+
+.premium-input:hover{
+    transform:translateY(-1px);
+}
+
+.premium-textarea{
+    width:100%;
+
+    min-height:120px;
+
+    resize:none;
+
+    border:none;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #ffffff,
+        #f8fafc
+    );
+
+    box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.8),
+    0 6px 18px rgba(15,23,42,.05);
+
+    transition:.3s;
+}
+
+#dropCanvas{
+    background:white;
+    border:none;
+
+    border-radius:24px;
+
+    min-height:650px;
+
+    padding:30px;
+
+    box-shadow:
+    0 20px 40px rgba(
+        15,
+        23,
+        42,
+        .08
+    );
+}
+#dropCanvas.drag-over{
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+.card{
+    border:none!important;
+    border-radius:16px!important;
+}
+
+.btn-primary{
+    border:none;
+
+    border-radius:12px;
+
+    padding:12px 30px;
+
+    font-weight:600;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+}
+
+.btn-outline-secondary{
+    border-radius:10px;
+}
+
+.content-wrapper{
+    background:linear-gradient(
+        135deg,
+        #f8fafc,
+        #eef2ff
+    );
+    min-height:100vh;
+    padding:40px;
+}
+
+.field-card{
+    background:white;
+
+    border-radius:22px;
+
+    border:none;
+
+    box-shadow:
+    0 10px 30px rgba(
+        0,
+        0,
+        0,
+        .06
+    );
+
+    transition:.3s;
+}
+
+.field-card:hover{
+    transform:translateY(-4px);
+}
+
+#dropCanvas{
+    background:white;
+    border:2px dashed #cbd5e1;
+    border-radius:18px;
+    min-height:600px;
+    padding:30px;
+}
+
+#dropCanvas.drag-over{
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+#nextBtn{
+    padding:10px 30px;
+    font-weight:600;
+}
+
+#cancelBtn{
+    padding:10px 30px;
+}
+
+.field-tile{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    padding:14px;
+    cursor:grab;
+    transition:.25s;
+    font-weight:600;
+}
+
+.field-tile:hover{
+    transform:translateY(-5px);
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 15px 35px rgba(
+        37,
+        99,
+        235,
+        .18
+    );
+}
+
+.nav-tabs .nav-link.active{
+    font-weight:700;
+}
+
+.btn-primary{
+    border-radius:10px;
+}
+
+.btn-outline-secondary{
+    border-radius:10px;
+}
+.field-badge{
+    display:inline-flex;
+
+    align-items:center;
+
+    background:#eef2ff;
+
+    color:#4338ca;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:.8px;
+}
+
+.field-title{
+    font-size:18px;
+    font-weight:700;
+    color:#111827;
+}
+
+.field-preview{
+    margin-top:15px;
+}
+
+.action-btn{
+    border:none;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+
+    transition:.25s;
+}
+
+.action-btn:hover{
+    background:#2563eb;
+    color:white;
+}
+
+.delete-btn:hover{
+    background:#ef4444!important;
+}
+
+.gap-2{
+    gap:8px;
+}
 </style>
 
 <script>
     let draggedFieldType = null;
-    let formFields = [];
+    let formFields =
+JSON.parse(localStorage.getItem('formFields')) || [];
     let selectedFieldId = null;
+    function saveToLocalStorage() {
+    localStorage.setItem(
+        'formFields',
+        JSON.stringify(formFields)
+    );
+}
 
     const fieldLabels = {
-        text: 'Text Input',
-        textarea: 'Text Area',
-        number: 'Number Input',
-        email: 'Email Input',
-        phone: 'Phone Input',
-        dropdown: 'Dropdown',
-        radio: 'Radio Buttons',
-        checkbox: 'Checkboxes',
-        date: 'Date Picker',
-        file: 'File Upload',
-        title: 'Title',
-        description: 'Description',
-        newline: 'New Line',
-        pagebreak: 'Page Break',
-        hidden: 'Hidden Field',
-        state: 'State',
-        city: 'City',
-        statecity: 'State & City',
-    };
-
+    text: '▣ Text Input',
+    textarea: '▤ Text Area',
+    number: '◫ Number Input',
+    email: '✉ Email Input',
+    phone: '⌕ Phone Input',
+    dropdown: '▾ Dropdown',
+    radio: '◉ Radio Buttons',
+    checkbox: '☑ Checkboxes',
+    date: '◷ Date Picker',
+    file: '⬆ File Upload',
+    title: '◆ Title',
+    description: '☰ Description',
+    newline: '↵ New Line',
+    pagebreak: '━ Page Break',
+    hidden: '◌ Hidden Field',
+    state: '⌖ State',
+    city: '⌂ City',
+    statecity: '⌘ State & City'
+};
     document.getElementById('formTitle').addEventListener('input', function () {
-        document.getElementById('titleCount').innerText = this.value.length;
-    });
+
+    const count = this.value.length;
+    const counter = document.getElementById('titleCount');
+
+    counter.innerText = count;
+
+    if(count < 100){
+        counter.style.color = '#10b981';
+    }
+    else if(count < 180){
+        counter.style.color = '#f59e0b';
+    }
+    else{
+        counter.style.color = '#ef4444';
+    }
+
+});
 
     document.querySelectorAll('.field-tile').forEach(tile => {
         tile.addEventListener('dragstart', function () {
@@ -327,39 +716,96 @@
     }
 
     function renderFields() {
+        saveToLocalStorage();
         dropCanvas.innerHTML = '';
 
         if (formFields.length === 0) {
             dropCanvas.innerHTML = `
                 <div id="emptyState" class="text-center text-muted mt-5">
-                    Drag elements from the right panel to build your form →
+                    <div style="font-size:60px;">
+                        🧩
+                    </div>
+                    <h4 class="fw-bold mt-3">
+                        Your Form Is Empty
+                    </h4>
+                    <p class="text-muted">
+                        Drag fields from the right panel to start creating your form.
+                    </p>
                 </div>`;
             return;
         }
 
         formFields.forEach(field => {
             const card = document.createElement('div');
-            card.className = 'field-card p-3 mb-3';
+card.className = 'field-card p-4 mb-4';
 
-            card.innerHTML = `
-                <div class="d-flex justify-content-between mb-2">
-                    <strong>
-                        ${field.label}
-                        ${field.required ? '<span class="text-danger">*</span>' : ''}
-                    </strong>
-                    <div>
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="moveUp(${field.id})">⬆️</button>
+card.innerHTML = `
+    <div class="d-flex justify-content-between align-items-start mb-3">
 
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="moveDown(${field.id})">⬇️</button>
+        <div>
+            <div class="field-badge mb-2">
+                ${field.type.toUpperCase()}
+            </div>
 
-                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="editField(${field.id})">✏️</button>
+            <h5 class="field-title mb-1">
+                ${field.label}
+                ${field.required ? '<span class="text-danger">*</span>' : ''}
+            </h5>
 
-                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="duplicateField(${field.id})">📄</button>
+            <small class="text-muted">
+                ${field.placeholder || 'Placeholder not configured'}
+            </small>
+        </div>
 
-                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="deleteField(${field.id})">🗑️</button>
-                    </div>
-                </div>
-                ${getFieldPreview(field)}`;
+        <div class="d-flex gap-2">
+
+            <button 
+                type="button"
+                class="action-btn"
+                onclick="moveUp(${field.id})"
+                title="Move Up">
+                ↑
+            </button>
+
+            <button 
+                type="button"
+                class="action-btn"
+                onclick="moveDown(${field.id})"
+                title="Move Down">
+                ↓
+            </button>
+
+            <button 
+                type="button"
+                class="action-btn"
+                onclick="editField(${field.id})"
+                title="Edit">
+                ✏️
+            </button>
+
+            <button 
+                type="button"
+                class="action-btn"
+                onclick="duplicateField(${field.id})"
+                title="Duplicate">
+                ⧉
+            </button>
+
+            <button 
+                type="button"
+                class="action-btn delete-btn"
+                onclick="deleteField(${field.id})"
+                title="Delete">
+                🗑
+            </button>
+
+        </div>
+    </div>
+
+    <div class="field-preview">
+        ${getFieldPreview(field)}
+    </div>
+`;
 
             dropCanvas.appendChild(card);
         });
@@ -367,8 +813,15 @@
 
     function getFieldPreview(field) {
         if (field.type === 'textarea') {
-            return `<textarea class="form-control ${field.cssClass}" placeholder="${field.placeholder}" disabled></textarea>`;
-        }
+
+    return `
+        <textarea
+            class="premium-textarea ${field.cssClass}"
+            placeholder="${field.placeholder || 'Write something amazing...'}"
+            disabled>
+        </textarea>
+    `;
+}
 
     if (field.type === 'dropdown') {
         return `
@@ -469,7 +922,17 @@
         `;
     }
 
-        return `<input type="${field.type}" class="form-control ${field.cssClass}" placeholder="${field.placeholder}" disabled>`;
+        return `
+    <div class="premium-input-wrapper">
+
+        <input
+            type="${field.type}"
+            class="premium-input ${field.cssClass}"
+            placeholder="${field.placeholder || 'Type something...'}"
+            disabled>
+
+    </div>
+`;
     }
 
     function editField(id) {
@@ -606,6 +1069,8 @@
         [formFields[index + 1], formFields[index]];
 
         renderFields();
+        showAddFieldsPanel();
     }
+    renderFields();
 </script>
 @endsection
